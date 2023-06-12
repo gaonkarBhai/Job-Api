@@ -28,12 +28,18 @@ userSchema.pre('save',async function(){
 })
 
 // after user register token is created
-userSchema.methods.createJWT = function async(){
+userSchema.methods.createJWT = async function () {
   return jwt.sign(
     { userId: this._id, userName: this.name },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_LIFETIME }
   );
-}
+};
+
+// comparing password
+userSchema.methods.comparePassword = async function (psw) {
+  const isMatch = await bcrypt.compare(psw, this.password);
+  return isMatch;
+};
 
 module.exports = mongoose.model("User", userSchema);
