@@ -29,7 +29,7 @@ const login = async (req, res) => {
       message: "User does not exists",
       success: false,
     });
-  // comparing the password comes here
+  // comparing the password 
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect)
     return res.status(401).json({
