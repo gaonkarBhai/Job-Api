@@ -20,14 +20,17 @@ const authRouter = require("./routes/auth");
 const jobRouter = require("./routes/job");
 
 // Middleware
+
+// # this middleware cusing error while deploying in vercel : use can add locally or for you own domain (won't work in vercel)
 // app.set('trust proxy',1)
 // app.use(expressRateLimit({
 //     windowMs:15*60*1000,
 //     max:100,
 //   }))
+// app.use(helmet())
+
 app.use(express.json());
 app.use(cors())
-// app.use(helmet())
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/job", athenticateUser, jobRouter);
