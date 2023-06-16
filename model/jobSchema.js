@@ -27,4 +27,8 @@ const jobSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// mongoose instance function for checking /:id
+jobSchema.statics.isValidJobId = function (jobId) {
+  return mongoose.Types.ObjectId.isValid(jobId);
+};
 module.exports = mongoose.model("Job", jobSchema);
