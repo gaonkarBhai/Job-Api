@@ -20,14 +20,14 @@ const authRouter = require("./routes/auth");
 const jobRouter = require("./routes/job");
 
 // Middleware
-app.set('trust proxy',1)
-app.use(expressRateLimit({
-    windowMs:15*60*1000,
-    max:100,
-  }))
+// app.set('trust proxy',1)
+// app.use(expressRateLimit({
+//     windowMs:15*60*1000,
+//     max:100,
+//   }))
 app.use(express.json());
 app.use(cors())
-app.use(helmet())
+// app.use(helmet())
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/job", athenticateUser, jobRouter);

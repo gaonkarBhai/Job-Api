@@ -23,7 +23,6 @@
     "express-rate-limit": "^6.7.0",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.2.3",
-    "xss-clean": "^0.1.4"
+    "mongoose": "^7.2.3"
   }
 }
