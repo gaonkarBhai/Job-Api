@@ -23,6 +23,8 @@
     "express-rate-limit": "^6.7.0",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.2.3"
+    "mongoose": "^7.2.3",
+    "swagger-ui-express": "^4.6.3",
+    "yamljs": "^0.3.0"
   }
 }
