@@ -6,9 +6,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // security modules
-const cors = require('cors')
-const helmet = require('helmet')
-const expressRateLimit = require('express-rate-limit')
+// const cors = require('cors')
+// const helmet = require('helmet')
+// const expressRateLimit = require('express-rate-limit')
 
 const athenticateUser = require('./middleware/authentication')
 
@@ -29,6 +29,11 @@ const jobRouter = require("./routes/job");
 //   }))
 // app.use(helmet())
 
+// swagger-ui
+const swaggerUI = require('swagger-ui-express')
+const YAML = require('yamljs')
+const swaggerDoc = YAML.load("./swaggerUI.yaml");
+
 app.use(express.json());
 app.use(cors())
 
@@ -40,12 +45,9 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Happy coding" });
 });
 
-// swagger-ui
-const swaggerUI = require('swagger-ui-express')
-const YAML = require('yamljs')
-const swaggerDoc = YAML.load("./swaggerUI.yaml");
+
 // swagger-ui middleware
-app.use('/docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
 
 
 

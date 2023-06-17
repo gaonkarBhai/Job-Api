@@ -11,8 +11,8 @@
       "dest": "index.js"
     },
     {
-      "src": "/docs",
-      "dest": "swagger-ui/dist"
+      "src": "/api-docs",
+      "dest": "swaggerUI.yaml/dist"
     }
   ]
 }
