@@ -10,8 +10,6 @@ const cors = require('cors')
 const helmet = require('helmet')
 const expressRateLimit = require('express-rate-limit')
 
-
-
 const athenticateUser = require('./middleware/authentication')
 
 // Database
@@ -42,20 +40,18 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Happy coding" });
 });
 
-// swagger-ui
-const swaggerUI = require('swagger-ui-express')
-const YAML = require('yamljs')
-const swaggerDoc = YAML.load("./swaggerUI.yaml");
-// swagger-ui middleware
-app.use('/docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
+// // swagger-ui
+// const swaggerUI = require('swagger-ui-express')
+// const YAML = require('yamljs')
+// const swaggerDoc = YAML.load("./swaggerUI.yaml");
+// // swagger-ui middleware
+// app.use('/docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
 
 
 
 app.get("*", (req, res) => {
   res.status(404).json({ message: "Page not found!" });
 });
-
-
 
 
 // __ main() __
