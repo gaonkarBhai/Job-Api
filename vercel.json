@@ -9,10 +9,6 @@
     {
       "src": "/(.*)",
       "dest": "index.js"
-    },
-    {
-      "src": "/api-docs",
-      "dest": "swaggerUI.yaml/dist"
     }
   ]
 }
