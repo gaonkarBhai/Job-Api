@@ -40,12 +40,12 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Happy coding" });
 });
 
-// // swagger-ui
-// const swaggerUI = require('swagger-ui-express')
-// const YAML = require('yamljs')
-// const swaggerDoc = YAML.load("./swaggerUI.yaml");
-// // swagger-ui middleware
-// app.use('/docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
+// swagger-ui
+const swaggerUI = require('swagger-ui-express')
+const YAML = require('yamljs')
+const swaggerDoc = YAML.load("./swaggerUI.yaml");
+// swagger-ui middleware
+app.use('/docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
 
 
 
