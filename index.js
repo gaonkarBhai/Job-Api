@@ -28,14 +28,14 @@ const jobRouter = require("./routes/job");
 //     max:100,
 //   }))
 // app.use(helmet())
+// app.use(cors())
+
 
 // swagger-ui
 const swaggerUI = require('swagger-ui-express')
 const YAML = require('yamljs')
 const swaggerDoc = YAML.load("./swaggerUI.yaml");
-
 app.use(express.json());
-app.use(cors())
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/job", athenticateUser, jobRouter);
