@@ -30,9 +30,11 @@ app.set("trust proxy", 1);
 // app.use(cors())
 
 // swagger-ui
+const path = require('path');
 const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
-const swaggerDoc = YAML.load("./swaggerUI.yaml");
+const swagger_path =  path.resolve(__dirname,'./swaggerUI.yaml');
+const swaggerDoc = YAML.load(swagger_path);
 app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/job", athenticateUser, jobRouter);
