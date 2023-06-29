@@ -1,10 +1,10 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
   title: JOB-API
   contact: {}
   version: '1.0'
 servers:
-- url: https://job-api-neon.vercel.app/api/v1
+- url: https://job-api-brown.vercel.app/api/v1
   variables: {}
 paths:
   /auth/register:
@@ -19,19 +19,23 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-                password:
-                  type: string
+              allOf:
+              - $ref: '#/components/schemas/registerrequest'
+              - example:
+                  name: Manoj M V
+                  email: manojISchomu420@gmail.com
+                  password: manugotHacket
+            example:
+              name: Manoj M V
+              email: manojISchomu420@gmail.com
+              password: manugotHacket
+        required: true
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
+      security: []
   /auth/login:
     post:
       tags:
@@ -44,17 +48,21 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
+              allOf:
+              - $ref: '#/components/schemas/loginrequest'
+              - example:
+                  email: manojISchomu420@gmail.com
+                  password: manugotHacket
+            example:
+              email: manojISchomu420@gmail.com
+              password: manugotHacket
+        required: true
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
+      security: []
   /job:
     get:
       tags:
@@ -78,14 +86,17 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                company:
-                  type: string
-                position:
-                  type: string
-                status:
-                  type: string
+              allOf:
+              - $ref: '#/components/schemas/creteJobRequest'
+              - example:
+                  company: ChomuChai's
+                  position: CEO
+                  status: pending
+            example:
+              company: ChomuChai's
+              position: CEO
+              status: pending
+        required: true
       responses:
         '200':
           description: ''
@@ -121,10 +132,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                position:
-                  type: string
+              allOf:
+              - $ref: '#/components/schemas/updateJobRequest'
+              - example:
+                  position: rejected
+            example:
+              position: rejected
+        required: true
       responses:
         '200':
           description: ''
@@ -141,3 +155,74 @@ paths:
           description: ''
           headers: {}
       deprecated: false
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Manoj M V
+        email: manojISchomu420@gmail.com
+        password: manugotHacket
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: manojISchomu420@gmail.com
+        password: manugotHacket
+    creteJobRequest:
+      title: creteJobRequest
+      required:
+      - company
+      - position
+      - status
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+        status:
+          type: string
+      example:
+        company: ChomuChai's
+        position: CEO
+        status: pending
+    updateJobRequest:
+      title: updateJobRequest
+      required:
+      - position
+      type: object
+      properties:
+        position:
+          type: string
+      example:
+        position: rejected
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Auth
+- name: Job
