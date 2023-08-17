@@ -25,6 +25,9 @@ const getJob = async (req, res) => {
 
 const createJob = async (req, res) => {
   req.body.createdBy = req.user.userId
+  const {company,position,status} = req.body
+  if (!company || !position || !status)
+  return res.status(400).json({ message: "feilds can not be empty", success: false });
   const job = await JobModel.create(req.body)
   res.status(201).json({job,success:true});
 };
